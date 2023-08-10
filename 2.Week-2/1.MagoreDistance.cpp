@@ -4,7 +4,7 @@ const int N = 1e5+5;
 vector<int>adj[N];
 bool visited[N];
 int level[N];
-void bfs(int s){
+void bfs(int s ){
     queue<int>q;
     q.push(s);
     visited[s]=true;
@@ -12,13 +12,13 @@ void bfs(int s){
     while(!q.empty()){
          int u =q.front();
             q.pop();
-            cout<<"Node level "<<level[u] <<" : "<<u<<endl;
         for(int v: adj[u]){
             if(visited[v]==true)continue;
             q.push(v);
             visited[v]=true;
             level[v]=level[u]+1;
         }
+        
     }
     
 }
@@ -33,10 +33,29 @@ int main ()
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-    bfs(1);
-
-    for(int i=1;i<=n;i++){
-        cout<<"Level "<<i<< ": "<<level[i]<<endl;
+    
+    int quires;
+    cin>>quires;
+    while (quires--)
+    {
+        int a,b;
+        cin>>a>>b;
+        for (int i = 0; i < N; i++) {
+            visited[i] = false;
+            level[i] = -1;
+        }
+        bfs(a);
+        
+        if(level[b]==-1){
+            cout<<-1<<endl;
+        }
+        else{
+            cout<<level[b]<<endl;
+        }
+        
     }
+    
+
+   
     return 0;
 }
