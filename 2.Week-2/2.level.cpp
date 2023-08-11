@@ -32,11 +32,24 @@ int main ()
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-    bfs(0);
     int p;
     cin>>p;
+    if (p == 0)
+    {
+        cout << 0;
+        return 0;
+    }
+    bfs(0);
+   int mx = INT_MIN;
+   for(int i=0;i<N;i++){
+        mx = max(mx,level[i]);
+   }
+   if(p>mx){
+    cout<<-1;
+    return 0;
+   }
     queue<int>v;
-    for(int i=0;i<n;i++){
+    for(int i=0;i<N;i++){
         
         if(p == level[i]){
             v.push(i);
@@ -44,19 +57,13 @@ int main ()
         }
        
     }
-
-   if(v.empty()){
-       
-     cout<<-1;
-   }
-   else{
      while (!v.empty())
         {
             int x = v.front();
             v.pop();
             cout<<x<<" ";
         }
-   }
+   
     
     return 0;
 }
