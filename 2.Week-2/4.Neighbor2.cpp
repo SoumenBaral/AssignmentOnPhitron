@@ -1,22 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int N = 1e5 + 5;
+const int N = 20;
 vector<int>adj[N];
 bool visited[N];
-int level[N];
-void bfs(int s){
-    queue<int>q;
-    q.push(s);
-    visited[s]=true;
-    level[s]=0;
-    while(!q.empty()){
-         int u =q.front();
-            q.pop();
-        for(int v: adj[u]){
-            if(visited[v]==true)continue;
-            q.push(v);
-            visited[v]=true;
-            level[v]=level[u]+1;
+void dfs(int u){
+    visited[u]=true;
+    
+    for(int v: adj[u])
+    {
+       if(!visited[v]){
+            dfs(v);
         }
     }
     
@@ -25,19 +18,26 @@ int main ()
 {
     int n,m;
     cin>>n>>m;
-    for(int i = 0;i<m;i++){
+    for(int i=0;i<m;i++){
         int u,v;
         cin>>u>>v;
-        adj[u].push_back(v);
-    }
-    int st;
-    cin>>st;
-    bfs(st);
+        adj[u].push_back(v); 
 
-
-      for(int i=1;i<=n;i++){
-        cout<<"Level "<<i<< ": "<<level[i]<<endl;
     }
-  
+     int p;
+     cin>>p;
+
+        
+  dfs(p);
+   int count = 0;
+   for (int i = 0; i < N; ++i) {
+        if (visited[i]) {
+            count++;
+        }
+    }
+    
+    cout << count - 1 << endl;
+    
+    
     return 0;
 }
