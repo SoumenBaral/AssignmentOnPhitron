@@ -4,9 +4,9 @@ tmp = ''
 lst = []
 for i in range(length):
     tmp += words[i]
-    if(tmp.count('L')==tmp.count('R')):
+    if(tmp.count('L') == tmp.count('R')):
         lst.append(tmp)
-        tmp =""
+        tmp = ""
 
 
 print(len(lst))
