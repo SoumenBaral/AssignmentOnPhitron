@@ -1,5 +1,7 @@
 t = int(input())
 number = list(map(int,input().split()))
 print(number)
-for i in range(t):
-    print(i)
+flag = False
+for num in number:
+    if(num%2 != 0):
+        flag = true
