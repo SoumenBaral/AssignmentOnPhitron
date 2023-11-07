@@ -8,11 +8,20 @@ if n == 1:
 
 else:
     number = list(map(int,input().split()))
-    ls = []
-    for num in number:
-        if num ==  number.count(num) :
-           ls.append(num)
-        
-    print(len(ls)) 
-
+    dic = {}
+    for i in number:
+        if i in dic :
+            dic[i] += 1 
+        else:
+            dic[i] = 1
+    dlt = 0
+    for num , count in dic.items():
+        if(num == count):
+            continue
+        else:
+            if num > count:
+                dlt += count
+            else:
+                dlt +=  count - num
+    print(dlt)
 
